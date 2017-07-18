@@ -1,0 +1,77 @@
+{% load static %}
+<style>
+    .bus-playlist-item {
+        background-color: #cceae4;
+        border-radius: 3px;
+        display: inline-block;
+        padding: 2px;
+        color: #62a29c;
+        cursor: pointer;
+    }
+
+    .bus-playlist-item i:hover {
+        cursor: pointer;
+    }
+</style>
+
+{% for item in playlist %}
+    <div class="bus-playlist-item" bus-id="{{ bus_id }}" playlist-id="{{ item.id }}">
+        <span class="select2-selection__choice__remove" role="presentation">×</span> {{ item.title }}
+    </div>
+{% endfor %}
+{#<select class="playlist">#}
+{#    {% for item in allPlaylists %}#}
+{#        {% if item not in playlist %}#}
+{#            <option bus-id="{{ bus_id }}" playlist-id="{{ item.id }}">{{ item.title }}</option>#}
+{#        {% endif %}#}
+{#    {% endfor %}#}
+{#</select>#}
+{##}
+{#<script src="{% static "jet/vendor/jquery/jquery-1.11.3.min.js" %}"></script>#}
+{#<script src="{% static "jet/vendor/select2/js/select2.full.js" %}"></script>#}
+{#<script>#}
+{#    $(document).ready(function () {#}
+{#        var unbind_playlist = function () {#}
+{#            var that = this;#}
+{#            var bus_id = $(this).parent().attr('bus-id');#}
+{#            var playlist_id = $(this).parent().attr('playlist-id');#}
+{##}
+{#            $.ajax({#}
+{#                        method: 'POST',#}
+{#                        url: '{% url "unbind_bus_to_playlist" %}',#}
+{#                        dataType: 'json',#}
+{#                        data: {bus_id: bus_id, playlist_id: playlist_id},#}
+{#                        success: function (data) {#}
+{#                            if (data.result == 'success') {#}
+{#                                $(that).parent().fadeOut();#}
+{#                            } else {#}
+{#                                console.log('error on delete: ' + data.err)#}
+{#                            }#}
+{#                        },#}
+{#                        error: function (data) {#}
+{#                            console.log(data);#}
+{#                        }#}
+{#                    }#}
+{#            );#}
+{#        };#}
+{##}
+{#        var playlistList = $('select.playlist');#}
+{##}
+{#        $('span.select2').remove();#}
+{#        $(playlistList).select2();#}
+{##}
+{#        var bind_playlist = function () {#}
+{#            console.log($(this).val());#}
+{#        };#}
+{##}
+{#        $(playlistList).on('select2:select', bind_playlist);#}
+{#        $(playlistList).unbind('select2:select');#}
+{#        $(playlistList).bind('select2:select', bind_playlist);#}
+{##}
+{#        var delete_icons = $('.bus-playlist-item > span');#}
+{##}
+{#        $(delete_icons).on('click', unbind_playlist);#}
+{#        $(delete_icons).unbind('click');#}
+{#        $(delete_icons).bind('click', unbind_playlist);#}
+{#    })#}
+{#</script>#}
