@@ -12,6 +12,7 @@ class PlaylistsResource(ModelResource):
     class Meta:
         queryset = api_object_playlist
         name = 'Playlist'
+	limit = 200	
 
     video = fields.ToManyField('relaxes.api.VideosResource', 'video', full=True, null=True)
 
@@ -20,6 +21,7 @@ class VideosResource(ModelResource):
     class Meta:
         queryset = api_object_video
         name = 'video'
+	limit = 200
 
     def dehydrate(self, bundle):
         file = bundle.data['file']

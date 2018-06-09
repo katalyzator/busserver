@@ -19,7 +19,8 @@ class PlaylistAdResource(ModelResource):
         filtering = {
             'bus': ALL_WITH_RELATIONS,
         }
-
+	limit = 200
+    
     bus = fields.ToManyField('playlists.api.BusResource', 'bus', full=True, null=True)
     video = fields.ToManyField('playlists.api.VideoResource', 'video', full=True, null=True)
 
@@ -30,7 +31,7 @@ class VideoResource(ModelResource):
     class Meta:
         queryset = api_object_video
         name = 'video'
-
+	limit = 200
         # def dehydrate(self, bundle):
         #     bundle.data['file'] = ', '.join([a.file.__str__() for a in bundle.obj.files.all()])
         #     return bundle
@@ -43,7 +44,7 @@ class BusResource(ModelResource):
         filtering = {
             'number': ALL_WITH_RELATIONS,
         }
-
+	limit = 200
 
 class GroupVideoResource(ModelResource):
     class Meta:
@@ -62,3 +63,4 @@ class ApkVersionResource(ModelResource):
     class Meta:
         queryset = api_object_apk_version
         resource_name = 'apk'
+	limit = 200
